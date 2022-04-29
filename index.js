@@ -42,7 +42,7 @@ function log(message) {
 
 // Assert that this function works:
 function someFunction(someString, somePromise) {
-  return somePromise.then(someValue => {
+  return somePromise().then(someValue => {
     return `${someString}: ${someValue}`
   })
 }

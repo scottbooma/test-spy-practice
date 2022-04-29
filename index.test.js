@@ -36,18 +36,18 @@ test("reduce returns a single value when given an array of multiple items", () =
 })
 
 test("log calls a function when given a string", () => {
-    const message = jest.fn(() => "Hello")
+    const mockConsole = jest.spyOn(console, "log")
 
-    log(message)
+    log("message")
 
-    expect(message).toHaveBeenCalledWith(console.log)
+    expect(mockConsole).toHaveBeenCalledWith("LOG: message")
 })
 
-test("someFunction returns a key/value pair when given a string and promise", () => {
+test("someFunction returns a key/value pair when given a string and promise", async () => {
     const someString = "id"
     const somePromise = jest.fn().mockResolvedValue(28)
 
     const returnValue = someFunction(someString, somePromise)
 
-    expect(returnValue).toBe("id: 28")
+    await expect(returnValue).resolves.toBe("id: 28")
 })
