@@ -1,4 +1,4 @@
-const { map, filter, reduce, someFunction, log } = require("./index")
+const { map, filter, reduce, log, someFunction, } = require("./index")
 
 test("map returns a transformed array of items when given an array of multiple items", () => {
     const array = [1, 2, 3]
@@ -33,4 +33,21 @@ test("reduce returns a single value when given an array of multiple items", () =
     const reducedValue = reduce(array, reducer, initial)
 
     expect(reducedValue).toEqual(6)
+})
+
+test("log calls a function when given a string", () => {
+    const message = jest.fn(() => "Hello")
+
+    log(message)
+
+    expect(message).toHaveBeenCalledWith(console.log)
+})
+
+test("someFunction returns a key/value pair when given a string and promise", () => {
+    const someString = "id"
+    const somePromise = jest.fn().mockResolvedValue(28)
+
+    const returnValue = someFunction(someString, somePromise)
+
+    expect(returnValue).toBe("id: 28")
 })
